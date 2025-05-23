@@ -1,8 +1,8 @@
 const mongoose= require("mongoose")
 
-const connection =async (connectionString)=>{
+const dbconnection =async (connectionString)=>{
          await mongoose.connect(connectionString)
          console.log("database connected")
 }
 
-module.exports=connection
+module.exports={dbconnection}

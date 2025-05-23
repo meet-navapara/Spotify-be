@@ -1,7 +1,7 @@
 const express = require("express");
-const connection = require("./connection/connetion");
 var cors = require('cors')
 const userRoutes = require("./routes/user.route");
+const {dbconnection} = require("./connection/connetion")
 const trackRoutes = require('./routes/track.route');
 require('dotenv').config();
 const app = express()
@@ -16,7 +16,7 @@ const connect = async ()=>{
      app.listen(process.env.PORT,()=>{
             console.log("Server is running");
     })
-    await connection(process.env.URL)
+    await dbconnection(process.env.URL)
 
 }
 connect()
