@@ -16,7 +16,8 @@ const connect = async ()=>{
      app.listen(process.env.PORT,()=>{
             console.log("Server is running");
     })
-    await dbconnection(process.env.URL)
+    await mongoose.connect(process.env.URL)
+    console.log("database connected")
 
 }
 connect()
