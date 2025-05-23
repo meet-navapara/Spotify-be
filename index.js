@@ -14,14 +14,7 @@ app.use('/api', trackRoutes);
 
 const startServer = async () => {
   try {
-    // MongoDB Atlas connection with proper options
-    await mongoose.connect(process.env.URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
-      retryWrites: true,
-      w: 'majority'
-    });
+    await mongoose.connect(process.env.URL);
     console.log("Database connected successfully");
     
     app.listen(process.env.PORT, () => {
