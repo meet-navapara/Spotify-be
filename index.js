@@ -13,7 +13,7 @@ app.use(express.json())
 app.use('/api/users', userRoutes);
 app.use('/api', trackRoutes);
 
-const connect = async ()=>{
+const connecttions = async ()=>{
      app.listen(process.env.PORT,()=>{
             console.log("Server is running");
     })
@@ -21,5 +21,5 @@ const connect = async ()=>{
     console.log("database connected")
 
 }
-connect()
+connecttions()
 
