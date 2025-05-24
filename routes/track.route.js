@@ -1,12 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const trackController = require('../controller/track.controller');
+const protect = require('../middleware/authMiddleware');
+const {
+  createTrack,
+  getTracksByAddedBy,
+  updateTrackByUser,
+  deleteTrackByUser
+} = require('../controller/track.controller');
 
-router.post('/tracks', trackController.createTrack);
-
-// Custom routes by addedBy
-router.get('/tracks/user/:addedBy', trackController.getTracksByAddedBy);
-router.put('/tracks/user/:addedBy/:id', trackController.updateTrackByUser);
-router.delete('/tracks/user/:addedBy/:id', trackController.deleteTrackByUser);
+router.post('/', protect, createTrack);
+router.get('/user', protect, getTracksByAddedBy);
+router.put('/:id', protect, updateTrackByUser);
+router.delete('/:id', protect, deleteTrackByUser);
 
 module.exports = router;

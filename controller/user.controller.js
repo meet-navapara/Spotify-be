@@ -4,9 +4,8 @@ const UserModel = require('../model/user.model');
 
 dotenv.config();
 
-// Generate JWT Token
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
+const generateToken = (user) => {
+  return jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, {
     expiresIn: '30d'
   });
 };
@@ -41,7 +40,7 @@ const register = async (req, res) => {
           name: user.name,
           email: user.email,
           number: user.number,
-          token: generateToken(user._id)
+          token: generateToken(user)
         }
       });
     } else {
@@ -91,7 +90,7 @@ const login = async (req, res) => {
         name: user.name,
         email: user.email,
         number: user.number,
-        token: generateToken(user._id)
+        token: generateToken(user)
       }
     });
   } catch (err) {
