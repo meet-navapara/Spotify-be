@@ -8,7 +8,7 @@ exports.createTrack = async (req, res) => {
       return res.status(400).json({ message: 'Track already added' });
     }
 
-    const track = new Track({ name: req.body, addedBy });
+    const track = new Track({ ...req.body, addedBy });
     const saved = await track.save();
     res.status(201).json(saved);
   } catch (err) {
